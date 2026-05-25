@@ -1,0 +1,188 @@
+---
+const WA = 'https://wa.me/543424470962?text=Hola%2C%20quiero%20consultar%20con%20Magno%20Studio%20sobre%20';
+
+const servicios = [
+  {
+    num: '01',
+    icon: '🎯',
+    titulo: 'Landing Pages de Alta Conversión',
+    desc: 'Una sola página construida para convertir. Cada sección, cada copy y cada botón están diseñados con un objetivo: que el visitante compre, se suscriba o te contacte.',
+    bullets: ['Diseño 100% a medida', 'Copy persuasivo incluido', 'Integración WhatsApp / Email', 'Optimizada para anuncios'],
+    desde: 'USD 150',
+    cta: 'Quiero mi landing',
+    msg: 'una%20landing%20page.',
+  },
+  {
+    num: '02',
+    icon: '🚀',
+    titulo: 'Embudos de Venta Completos',
+    desc: 'Sistema completo de páginas: captura, ventas, upsell y agradecimiento. Diseñado para guiar al usuario paso a paso hasta el checkout sin fricciones.',
+    bullets: ['Funnel de hasta 5 páginas', 'Integración con pasarela de pago', 'Email marketing conectado', 'A/B testing incluido'],
+    desde: 'USD 320',
+    cta: 'Quiero mi embudo',
+    msg: 'un%20embudo%20de%20ventas.',
+  },
+  {
+    num: '03',
+    icon: '🏢',
+    titulo: 'Sitios Institucionales Premium',
+    desc: 'Para empresas, ONGs y organizaciones que necesitan presencia digital seria. Multi-sección, con blog, formularios y panel de administración propio.',
+    bullets: ['Múltiples secciones y páginas', 'Blog con CMS Keystatic', 'Panel admin propio', 'SEO técnico avanzado'],
+    desde: 'USD 320',
+    cta: 'Quiero mi sitio',
+    msg: 'un%20sitio%20institucional.',
+  },
+  {
+    num: '04',
+    icon: '🔧',
+    titulo: 'Mantenimiento y Soporte Mensual',
+    desc: 'Tu sitio siempre actualizado, seguro y funcionando. Actualizaciones de contenido, nuevas secciones, correcciones y soporte técnico prioritario.',
+    bullets: ['Actualizaciones ilimitadas de contenido', 'Nuevas secciones mensuales', 'Monitoreo de performance', 'Soporte prioritario 24hs'],
+    desde: 'A consultar',
+    cta: 'Consultar plan',
+    msg: 'el%20plan%20de%20mantenimiento.',
+  },
+];
+---
+
+<section id="servicios" class="servicios">
+  <div class="container">
+
+    <div class="srv-header reveal">
+      <span class="eyebrow">Servicios</span>
+      <h2 class="section-title">
+        Todo lo que tu negocio<br/>
+        <em>necesita para vender online.</em>
+      </h2>
+    </div>
+
+    <div class="srv-list">
+      {servicios.map((s, i) => (
+        <div class={`srv-item reveal`} style={`animation-delay:${i*0.1}s`}>
+          <div class="srv-left">
+            <span class="srv-num">{s.num}</span>
+            <div class="srv-icon-wrap">{s.icon}</div>
+          </div>
+          <div class="srv-center">
+            <h3>{s.titulo}</h3>
+            <p>{s.desc}</p>
+            <ul class="srv-bullets">
+              {s.bullets.map(b => <li><span>✓</span>{b}</li>)}
+            </ul>
+          </div>
+          <div class="srv-right">
+            <div class="srv-price">
+              <span class="price-desde">desde</span>
+              <span class="price-val">{s.desde}</span>
+            </div>
+            <a
+              href={`${WA}${s.msg}`}
+              target="_blank"
+              rel="noopener"
+              class="btn btn-ghost srv-cta"
+            >
+              {s.cta} →
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.servicios { background: var(--void-soft); }
+
+.srv-header { margin-bottom: 72px; }
+
+.srv-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.srv-item {
+  display: grid;
+  grid-template-columns: 80px 1fr 220px;
+  gap: 0;
+  background: var(--void-card);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+.srv-item:last-child { border: none; }
+.srv-item:hover { background: rgba(201,169,110,0.02); }
+
+.srv-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  border-right: 1px solid var(--border);
+  gap: 12px;
+}
+.srv-num {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--white-dim);
+  letter-spacing: 0.08em;
+}
+.srv-icon-wrap { font-size: 1.5rem; }
+
+.srv-center { padding: 36px 40px; }
+.srv-center h3 {
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+.srv-center p {
+  font-size: 0.88rem;
+  color: var(--white-soft);
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 18px;
+  max-width: 520px;
+}
+.srv-bullets { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 24px; }
+.srv-bullets li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.78rem;
+  color: var(--white-soft);
+  font-weight: 300;
+}
+.srv-bullets li span { color: var(--gold); font-size: 0.7rem; font-weight: 700; }
+
+.srv-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 36px 36px;
+  border-left: 1px solid var(--border);
+  gap: 16px;
+}
+.srv-price { text-align: right; }
+.price-desde { display: block; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white-soft); margin-bottom: 2px; }
+.price-val {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--gold);
+}
+.srv-cta { font-size: 0.76rem !important; padding: 10px 20px !important; white-space: nowrap; }
+
+@media (max-width: 860px) {
+  .srv-item { grid-template-columns: 1fr; }
+  .srv-left { flex-direction: row; justify-content: flex-start; padding: 20px 24px; border-right: none; border-bottom: 1px solid var(--border); }
+  .srv-center { padding: 24px; }
+  .srv-right { align-items: flex-start; border-left: none; border-top: 1px solid var(--border); padding: 20px 24px; flex-direction: row; align-items: center; }
+}
+</style>

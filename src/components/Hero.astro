@@ -1,0 +1,466 @@
+---
+const WA = 'https://wa.me/543424470962?text=Hola%2C%20quiero%20hablar%20con%20Magno%20Studio%20sobre%20mi%20proyecto%20web.';
+
+const stats = [
+  { num: '100',  label: 'Score Lighthouse',    icon: '⚡' },
+  { num: '< 1s', label: 'Tiempo de carga',     icon: '🚀' },
+  { num: '+40%', label: 'Más conversiones',    icon: '📈' },
+  { num: '6+',   label: 'Años de experiencia', icon: '🏆' },
+];
+---
+
+<section class="hero" id="inicio">
+
+  <!-- Fondo: líneas de código decorativas -->
+  <div class="hero-bg-code" aria-hidden="true">
+    <div class="code-line">import <span>&#123;</span> conversiones <span>&#125;</span> from <em>'magno-studio'</em></div>
+    <div class="code-line"><span>const</span> resultado <span>=</span> await <em>lanzar</em>(tuProducto)</div>
+    <div class="code-line"><span>// Score:</span> <em>100/100</em> · Carga: <em>0.3s</em> · Ventas: <em>↑</em></div>
+  </div>
+
+  <!-- Luz ambiental superior -->
+  <div class="hero-ambient"></div>
+
+  <!-- Línea horizontal decorativa -->
+  <div class="hero-line-h"></div>
+
+  <div class="container hero-inner">
+
+    <!-- Columna principal -->
+    <div class="hero-content">
+
+      <div class="hero-tag fade-up" style="animation-delay:0.05s">
+        <span class="tag-dot"></span>
+        <span>Agencia disponible · Santa Fe, Argentina</span>
+      </div>
+
+      <h1 class="hero-title fade-up" style="animation-delay:0.18s">
+        <span class="title-pre">Diseño,</span>
+        <em>velocidad</em>
+        <span class="title-amp">&amp;</span>
+        <strong>conversión.</strong>
+      </h1>
+
+      <p class="hero-desc fade-up" style="animation-delay:0.32s">
+        En Magno Studio construimos sitios web que trabajan por tu negocio las 24 horas.
+        Landings de alta conversión, embudos de venta y sitios institucionales premium
+        desarrollados con <strong>Astro</strong> — el framework más rápido del mercado.
+        <br/><br/>
+        Tu competencia usa WordPress. Vos usás Magno Studio.
+      </p>
+
+      <div class="hero-actions fade-up" style="animation-delay:0.46s">
+        <a href={WA} target="_blank" rel="noopener" class="btn btn-gold">
+          Quiero mi sitio premium →
+        </a>
+        <a href="#portafolio" class="btn btn-ghost">
+          Ver trabajos
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="hero-stats fade-up" style="animation-delay:0.6s">
+        {stats.map(s => (
+          <div class="stat">
+            <span class="stat-icon">{s.icon}</span>
+            <span class="stat-num">{s.num}</span>
+            <span class="stat-label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+
+    </div>
+
+    <!-- Columna derecha: mockup -->
+    <div class="hero-visual fade-up" style="animation-delay:0.5s">
+      <div class="mockup">
+        <div class="mockup-bar">
+          <span class="dot r"></span>
+          <span class="dot y"></span>
+          <span class="dot g"></span>
+          <div class="url-bar">magnostudio.web</div>
+        </div>
+        <div class="mockup-body">
+          <!-- Simulación visual de una landing -->
+          <div class="mock-hero-block">
+            <div class="mock-line w80"></div>
+            <div class="mock-line w60 gold"></div>
+            <div class="mock-line w90 thin"></div>
+            <div class="mock-line w70 thin"></div>
+            <div class="mock-btns">
+              <div class="mock-btn gold-btn"></div>
+              <div class="mock-btn ghost-btn"></div>
+            </div>
+          </div>
+          <div class="mock-stats-row">
+            {[1,2,3].map(() => (
+              <div class="mock-stat-card">
+                <div class="mock-line w40 gold"></div>
+                <div class="mock-line w70 thin"></div>
+              </div>
+            ))}
+          </div>
+          <div class="mock-cards">
+            {[1,2].map(() => (
+              <div class="mock-card">
+                <div class="mock-card-img"></div>
+                <div class="mock-line w80 mt8"></div>
+                <div class="mock-line w60 thin mt4"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <!-- Badge score -->
+        <div class="mockup-score">
+          <svg width="44" height="44" viewBox="0 0 44 44">
+            <circle cx="22" cy="22" r="18" fill="none" stroke="rgba(201,169,110,0.15)" stroke-width="3"/>
+            <circle cx="22" cy="22" r="18" fill="none" stroke="#c9a96e" stroke-width="3"
+              stroke-dasharray="113" stroke-dashoffset="0" stroke-linecap="round"
+              transform="rotate(-90 22 22)"/>
+          </svg>
+          <span class="score-val">100</span>
+        </div>
+      </div>
+
+      <!-- Floating cards -->
+      <div class="float-card fc1">
+        <span>🔥</span>
+        <div>
+          <strong>Lanzamiento exitoso</strong>
+          <small>CAMEES · Sitio live en producción</small>
+        </div>
+      </div>
+      <div class="float-card fc2">
+        <span>⚡</span>
+        <div>
+          <strong>0.3s carga</strong>
+          <small>vs 4.2s WordPress</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Marquee de tecnologías -->
+  <div class="hero-marquee">
+    <div class="marquee-track">
+      {['Astro', 'HTML5', 'CSS3', 'JavaScript', 'Node.js', 'Netlify', 'GitHub', 'Figma',
+        'Astro', 'HTML5', 'CSS3', 'JavaScript', 'Node.js', 'Netlify', 'GitHub', 'Figma'].map(t => (
+        <span class="marquee-item">
+          <span class="marquee-dot">◆</span> {t}
+        </span>
+      ))}
+    </div>
+  </div>
+
+</section>
+
+<style>
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 80px;
+  overflow: hidden;
+}
+
+/* Código de fondo */
+.hero-bg-code {
+  position: absolute;
+  top: 20%;
+  right: -2%;
+  opacity: 0.04;
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  line-height: 2.2;
+  color: var(--gold);
+  pointer-events: none;
+  transform: rotate(-3deg);
+  white-space: nowrap;
+}
+.hero-bg-code span { color: var(--gold-lt); }
+.hero-bg-code em   { color: #7dd3a8; }
+
+/* Luz ambiental */
+.hero-ambient {
+  position: absolute;
+  top: -10%;
+  left: 30%;
+  width: 900px; height: 700px;
+  background: radial-gradient(ellipse, rgba(201,169,110,0.055) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* Línea horizontal */
+.hero-line-h {
+  position: absolute;
+  top: 80px; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,169,110,0.08), transparent);
+}
+
+/* Layout */
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 500px;
+  gap: 80px;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+/* Tag */
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white-soft);
+  margin-bottom: 24px;
+}
+.tag-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #3dd68c;
+  animation: pulse-gold 2s ease-in-out infinite;
+}
+
+/* Título */
+.hero-title {
+  font-size: clamp(3rem, 6vw, 5.6rem);
+  font-weight: 200;
+  color: var(--white);
+  margin-bottom: 24px;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+}
+.title-pre { display: block; }
+.hero-title em {
+  display: block;
+  font-style: italic;
+  font-weight: 200;
+  color: var(--gold);
+  background: linear-gradient(135deg, var(--gold-dk), var(--gold), var(--gold-lt), var(--gold));
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
+}
+.title-amp {
+  display: inline;
+  color: var(--white-dim);
+  font-style: normal;
+  font-weight: 200;
+}
+.hero-title strong {
+  display: block;
+  font-weight: 600;
+  color: var(--white);
+  -webkit-text-fill-color: var(--white);
+}
+
+/* Desc */
+.hero-desc {
+  font-size: 1rem;
+  color: var(--white-soft);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 36px;
+  max-width: 520px;
+}
+.hero-desc strong { color: var(--white); font-weight: 500; }
+
+/* Actions */
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; }
+
+/* Stats */
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.stat-icon { font-size: 1rem; margin-bottom: 4px; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-label { font-size: 0.68rem; color: var(--white-soft); letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* Mockup */
+.hero-visual { position: relative; }
+.mockup {
+  background: var(--void-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow), var(--glow);
+  position: relative;
+}
+.mockup-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  border-bottom: 1px solid var(--border);
+}
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot.r { background: #ff5f57; }
+.dot.y { background: #febc2e; }
+.dot.g { background: #28c840; }
+.url-bar {
+  margin-left: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 12px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: var(--white-soft);
+  letter-spacing: 0.04em;
+}
+
+.mockup-body { padding: 24px 20px; }
+.mock-hero-block {
+  background: rgba(201,169,110,0.04);
+  border: 1px solid rgba(201,169,110,0.08);
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.mock-line {
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.08);
+  margin-bottom: 8px;
+}
+.mock-line.w40 { width: 40%; }
+.mock-line.w60 { width: 60%; }
+.mock-line.w70 { width: 70%; }
+.mock-line.w80 { width: 80%; }
+.mock-line.w90 { width: 90%; }
+.mock-line.gold { background: rgba(201,169,110,0.4); height: 12px; }
+.mock-line.thin { height: 5px; opacity: 0.5; }
+.mock-line.mt4  { margin-top: 4px; }
+.mock-line.mt8  { margin-top: 8px; }
+
+.mock-btns { display: flex; gap: 8px; margin-top: 14px; }
+.mock-btn { height: 26px; border-radius: 3px; }
+.gold-btn  { width: 100px; background: rgba(201,169,110,0.6); }
+.ghost-btn { width: 80px; background: transparent; border: 1px solid rgba(201,169,110,0.2); }
+
+.mock-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.mock-stat-card {
+  background: var(--void-soft);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 10px;
+}
+
+.mock-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mock-card {
+  background: var(--void-soft);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.mock-card-img {
+  height: 56px;
+  background: linear-gradient(135deg, rgba(201,169,110,0.1), rgba(201,169,110,0.05));
+}
+
+/* Score circular */
+.mockup-score {
+  position: absolute;
+  top: 14px; right: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+.score-val {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+/* Float cards */
+.float-card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(8,8,8,0.95);
+  border: 1px solid rgba(201,169,110,0.2);
+  border-radius: 8px;
+  padding: 12px 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  white-space: nowrap;
+}
+.float-card > span { font-size: 1.2rem; flex-shrink: 0; }
+.float-card strong { display: block; font-size: 0.8rem; font-weight: 600; color: var(--white); }
+.float-card small  { font-size: 0.68rem; color: var(--white-soft); }
+.fc1 { bottom: -20px; left: -40px; animation: float 5s ease-in-out infinite; }
+.fc2 { top: 40px; right: -40px; animation: float 7s ease-in-out infinite 1s; }
+
+/* Marquee */
+.hero-marquee {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid var(--border);
+  background: rgba(201,169,110,0.02);
+  padding: 16px 0;
+  overflow: hidden;
+}
+.marquee-track {
+  display: inline-flex;
+  gap: 0;
+  animation: marquee 20s linear infinite;
+  white-space: nowrap;
+}
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 28px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white-soft);
+}
+.marquee-dot { color: var(--gold); font-size: 0.5rem; opacity: 0.5; }
+
+@media (max-width: 1060px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 56px; }
+  .hero-visual { max-width: 480px; margin: 0 auto; }
+  .fc1, .fc2 { display: none; }
+}
+@media (max-width: 600px) {
+  .hero-title { font-size: 3rem; }
+  .hero-stats { gap: 20px; }
+  .hero-bg-code { display: none; }
+}
+</style>

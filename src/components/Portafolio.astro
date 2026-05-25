@@ -1,0 +1,246 @@
+---
+const proyectos = [
+  {
+    nombre: 'CAMEES',
+    categoria: 'Sitio institucional + CMS',
+    desc: 'Sitio web completo para la Cámara de Mujeres Empresarias y Emprendedoras Santafesinas. Blog con panel Keystatic, formularios, secciones dinámicas y deploy en Netlify.',
+    stack: ['Astro', 'Keystatic', 'Netlify', 'Node.js'],
+    score: '100',
+    img: '/images/portfolio/camees.jpg',
+    url: '#',
+    destacado: true,
+    color: '#e91e8c',
+  },
+  {
+    nombre: 'Próximo proyecto',
+    categoria: 'Landing de infoproducto',
+    desc: 'Landing page de alta conversión para lanzamiento de curso online. Optimizada para campañas de pago y picos de tráfico masivo.',
+    stack: ['Astro', 'HTML', 'CSS'],
+    score: '100',
+    img: '',
+    url: '#',
+    destacado: false,
+    color: '#c9a96e',
+  },
+  {
+    nombre: 'Próximo proyecto',
+    categoria: 'Embudo de ventas',
+    desc: 'Funnel completo: captura, ventas y agradecimiento. Integración con pasarela de pago y email marketing.',
+    stack: ['Astro', 'Node.js', 'Netlify'],
+    score: '100',
+    img: '',
+    url: '#',
+    destacado: false,
+    color: '#c9a96e',
+  },
+];
+---
+
+<section id="portafolio" class="portafolio">
+  <div class="container">
+
+    <div class="port-header reveal">
+      <span class="eyebrow">Portafolio</span>
+      <h2 class="section-title">
+        Proyectos que prueban<br/>
+        <em>lo que decimos.</em>
+      </h2>
+      <p class="port-sub">
+        Cada proyecto entregado con score 100/100 en Google Lighthouse y código limpio que escala.
+      </p>
+    </div>
+
+    <div class="port-grid">
+      {proyectos.map((p, i) => (
+        <article
+          class={`port-card reveal ${p.destacado ? 'destacado' : ''}`}
+          style={`animation-delay:${i*0.1}s`}
+        >
+          {p.destacado && <span class="port-badge">Proyecto real</span>}
+
+          <div class="port-img" style={`--accent: ${p.color}`}>
+            {p.img
+              ? <img src={p.img} alt={p.nombre} loading="lazy" />
+              : <div class="port-placeholder">
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="6" fill="rgba(201,169,110,0.06)" stroke="rgba(201,169,110,0.15)" stroke-width="1"/>
+                    <path d="M10 28V14L20 22L30 14V28" stroke="rgba(201,169,110,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  </svg>
+                  <span>En camino</span>
+                </div>
+            }
+            <div class="port-overlay"></div>
+            <div class="port-score">
+              <span>{p.score}</span>
+              <small>/ 100</small>
+            </div>
+          </div>
+
+          <div class="port-body">
+            <span class="port-cat">{p.categoria}</span>
+            <h3>{p.nombre}</h3>
+            <p>{p.desc}</p>
+            <div class="port-stack">
+              {p.stack.map(t => <span>{t}</span>)}
+            </div>
+            {p.url !== '#' && (
+              <a href={p.url} target="_blank" rel="noopener" class="port-link">
+                Ver proyecto en vivo →
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.portafolio { background: var(--void-soft); }
+
+.port-header { margin-bottom: 72px; }
+.port-sub { font-size: 1rem; color: var(--white-soft); font-weight: 300; margin-top: 12px; }
+
+.port-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.port-card {
+  background: var(--void-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s;
+}
+.port-card:hover {
+  border-color: var(--border-gold);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow), var(--glow);
+}
+.port-card.destacado {
+  grid-column: span 2;
+  border-color: rgba(201,169,110,0.25);
+}
+.port-card.destacado .port-img { height: 280px; }
+
+.port-badge {
+  position: absolute;
+  top: 14px; left: 14px;
+  z-index: 3;
+  background: var(--gold);
+  color: var(--void);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 2px;
+}
+
+.port-img {
+  height: 200px;
+  background: var(--void);
+  position: relative;
+  overflow: hidden;
+}
+.port-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+.port-card:hover .port-img img { transform: scale(1.04); }
+.port-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,8,8,0.6) 0%, transparent 60%);
+}
+.port-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.port-placeholder span {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+}
+.port-score {
+  position: absolute;
+  bottom: 14px; right: 14px;
+  background: rgba(8,8,8,0.9);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+.port-score span {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+}
+.port-score small { font-size: 0.58rem; color: var(--white-soft); }
+
+.port-body { padding: 24px; }
+.port-cat {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.65;
+  margin-bottom: 8px;
+}
+.port-body h3 {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.port-body p {
+  font-size: 0.82rem;
+  color: var(--white-soft);
+  line-height: 1.65;
+  font-weight: 300;
+  margin-bottom: 14px;
+}
+.port-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.port-stack span {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  border: 1px solid rgba(201,169,110,0.18);
+  padding: 3px 9px;
+  border-radius: 2px;
+}
+.port-link {
+  font-size: 0.78rem;
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: letter-spacing 0.2s;
+}
+.port-link:hover { letter-spacing: 0.08em; }
+
+@media (max-width: 860px) {
+  .port-grid { grid-template-columns: 1fr; }
+  .port-card.destacado { grid-column: span 1; }
+}
+</style>

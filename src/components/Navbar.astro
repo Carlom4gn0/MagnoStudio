@@ -1,0 +1,147 @@
+---
+const WA = 'https://wa.me/543424470962?text=Hola%2C%20quiero%20consultar%20sobre%20un%20proyecto%20web%20con%20Magno%20Studio.';
+---
+
+<header class="navbar" id="navbar">
+  <div class="container nav-inner">
+
+    <a href="/" class="nav-logo">
+      <div class="logo-mark">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="4" fill="rgba(201,169,110,0.08)" stroke="rgba(201,169,110,0.25)" stroke-width="1"/>
+          <path d="M7 26V10L18 20L29 10V26" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Magno Studio</span>
+        <span class="logo-sub">Web Agency</span>
+      </div>
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-links" id="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#portafolio">Portafolio</a>
+      <a href="#planes">Planes</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href={WA} target="_blank" rel="noopener" class="btn btn-gold nav-cta">
+        Iniciar proyecto
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+<style>
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(8,8,8,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.4s ease;
+}
+.navbar.scrolled {
+  border-color: rgba(201,169,110,0.12);
+  box-shadow: 0 4px 48px rgba(0,0,0,0.8);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+/* Logo */
+.nav-logo { display: flex; align-items: center; gap: 14px; }
+.logo-mark { transition: transform 0.3s; }
+.nav-logo:hover .logo-mark { transform: rotate(5deg); }
+.logo-name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+.logo-sub {
+  display: block;
+  font-size: 0.58rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.65;
+}
+
+/* Links */
+.nav-links { display: flex; align-items: center; gap: 40px; }
+.nav-links a {
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--white-soft);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+.nav-cta {
+  padding: 9px 22px !important;
+  font-size: 0.76rem !important;
+  letter-spacing: 0.12em !important;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 22px; height: 1px;
+  background: var(--white);
+  transition: all 0.3s;
+}
+
+@media (max-width: 960px) {
+  .hamburger { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 80px; left: 0; right: 0;
+    background: rgba(8,8,8,0.98);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 0 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 15px 36px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+  .nav-cta { margin: 16px 36px 0; text-align: center; justify-content: center; }
+}
+</style>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navLinks  = document.getElementById('nav-links');
+hamburger?.addEventListener('click', () => navLinks?.classList.toggle('open'));
+navLinks?.querySelectorAll('a').forEach(a =>
+  a.addEventListener('click', () => navLinks.classList.remove('open'))
+);
+window.addEventListener('scroll', () =>
+  document.getElementById('navbar')?.classList.toggle('scrolled', scrollY > 20)
+);
+</script>

@@ -1,0 +1,121 @@
+---
+const pasos = [
+  { num: '01', emoji: '💬', titulo: 'Consulta inicial',      desc: 'Me contás tu idea, tu producto y tu objetivo. En 24hs te respondo con una propuesta concreta y sin vueltas.' },
+  { num: '02', emoji: '🎨', titulo: 'Estrategia + Diseño',   desc: 'Definimos la estructura, el copy y la estética. Cada decisión está orientada a que el usuario avance hacia la compra.' },
+  { num: '03', emoji: '⚙️', titulo: 'Desarrollo con Astro',  desc: 'Construimos el sitio con el framework más rápido del mercado. Código limpio, responsive y optimizado para Google.' },
+  { num: '04', emoji: '🔍', titulo: 'Revisión y ajustes',    desc: 'Te mostramos el sitio en vivo. Hacemos todas las correcciones necesarias hasta que estés 100% conforme.' },
+  { num: '05', emoji: '🚀', titulo: 'Lanzamiento y soporte', desc: 'Deploy en Netlify con tu dominio propio. El sitio queda live y te acompañamos los primeros días para asegurar que todo funcione.' },
+];
+---
+
+<section id="proceso" class="proceso">
+  <div class="container">
+
+    <div class="proceso-header reveal">
+      <span class="eyebrow">Cómo trabajamos</span>
+      <h2 class="section-title">
+        Un proceso claro,<br/>
+        <em>sin sorpresas.</em>
+      </h2>
+      <p class="proceso-sub">
+        Desde la primera consulta hasta el lanzamiento, sabés exactamente qué pasa en cada etapa.
+      </p>
+    </div>
+
+    <div class="proceso-steps">
+      {pasos.map((p, i) => (
+        <div class="paso reveal" style={`animation-delay:${i*0.1}s`}>
+          <div class="paso-left">
+            <div class="paso-circle">
+              <span class="paso-emoji">{p.emoji}</span>
+            </div>
+            {i < pasos.length - 1 && <div class="paso-connector"></div>}
+          </div>
+          <div class="paso-content">
+            <span class="paso-num">{p.num}</span>
+            <h3>{p.titulo}</h3>
+            <p>{p.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.proceso { background: var(--void); }
+
+.proceso-header { margin-bottom: 72px; }
+.proceso-sub { font-size: 1rem; color: var(--white-soft); font-weight: 300; margin-top: 12px; max-width: 480px; }
+
+.proceso-steps {
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.paso {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.paso-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+.paso-circle {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--void-card);
+  border: 1px solid var(--border-gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.paso:hover .paso-circle {
+  border-color: var(--gold);
+  box-shadow: 0 0 24px rgba(201,169,110,0.15);
+}
+.paso-connector {
+  width: 1px;
+  flex: 1;
+  min-height: 48px;
+  background: linear-gradient(to bottom, rgba(201,169,110,0.2), rgba(201,169,110,0.05));
+  margin: 6px 0;
+}
+
+.paso-content {
+  padding: 12px 0 48px;
+}
+.paso:last-child .paso-content { padding-bottom: 0; }
+
+.paso-num {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  opacity: 0.6;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.paso-content h3 {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.paso-content p {
+  font-size: 0.88rem;
+  color: var(--white-soft);
+  line-height: 1.75;
+  font-weight: 300;
+}
+</style>
