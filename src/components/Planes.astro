@@ -5,7 +5,7 @@ const planes = [
   {
     nombre: 'Esencial',
     emoji: '⚡',
-    precio: 'USD 150',
+    precio: 'USD 380',
     desc: 'Para emprendedores que necesitan presencia digital profesional sin demoras.',
     features: [
       'Landing page hasta 5 secciones',
@@ -24,7 +24,7 @@ const planes = [
   {
     nombre: 'Pro',
     emoji: '🚀',
-    precio: 'USD 320',
+    precio: 'USD 650',
     desc: 'Para infoproductores que necesitan embudo completo y contenido actualizable.',
     features: [
       'Todo el plan Esencial',
@@ -44,7 +44,7 @@ const planes = [
   {
     nombre: 'Premium',
     emoji: '👑',
-    precio: 'USD 580',
+    precio: 'USD 1000',
     desc: 'Solución integral para lanzamientos de alto impacto con embudo completo.',
     features: [
       'Todo el plan Pro',
@@ -89,8 +89,8 @@ const planes = [
             <div class="plan-icon">{p.emoji}</div>
             <span class="plan-nombre">{p.nombre}</span>
             <div class="plan-precio">
+              <span class="precio-tipo">Desde</span>
               <span class="precio-val">{p.precio}</span>
-              <span class="precio-tipo">pago único</span>
             </div>
             <p class="plan-desc">{p.desc}</p>
           </div>

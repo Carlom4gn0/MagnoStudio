@@ -10,12 +10,16 @@ const year = new Date().getFullYear();
   <div class="footer-top-line"></div>
   <div class="container footer-inner">
 
+    <!-- Brand -->
     <div class="footer-brand">
       <a href="/" class="footer-logo">
-        <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
-          <rect width="36" height="36" rx="4" fill="rgba(201,169,110,0.08)" stroke="rgba(201,169,110,0.2)" stroke-width="1"/>
-          <path d="M7 26V10L18 20L29 10V26" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
+        <img
+          src="/favicon.png"
+          alt="Magno Studio Web"
+          class="footer-logo-img"
+          width="40"
+          height="40"
+        />
         <div>
           <span class="f-logo-name">Magno Studio</span>
           <span class="f-logo-sub">Web Agency</span>
@@ -96,10 +100,46 @@ const year = new Date().getFullYear();
   border-bottom: 1px solid var(--border);
 }
 
-.footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-.f-logo-name { display: block; font-family: var(--font-display); font-size: 1rem; font-weight: 300; color: var(--white); line-height: 1.1; letter-spacing: 0.04em; }
-.f-logo-sub  { display: block; font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.6; }
-.footer-brand > p { font-size: 0.82rem; color: var(--white-soft); line-height: 1.7; margin-bottom: 20px; font-weight: 300; }
+/* Logo footer */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  text-decoration: none;
+}
+.footer-logo-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.f-logo-name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+}
+.f-logo-sub {
+  display: block;
+  font-size: 0.56rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.6;
+}
+
+.footer-brand > p {
+  font-size: 0.82rem;
+  color: var(--white-soft);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
 
 .footer-soc { display: flex; gap: 8px; }
 .soc {
@@ -126,11 +166,22 @@ const year = new Date().getFullYear();
 }
 .footer-nav ul { list-style: none; }
 .footer-nav ul li { margin-bottom: 10px; }
-.footer-nav ul li a { font-size: 0.82rem; color: var(--white-soft); transition: color 0.2s; font-weight: 300; }
+.footer-nav ul li a {
+  font-size: 0.82rem;
+  color: var(--white-soft);
+  transition: color 0.2s;
+  font-weight: 300;
+}
 .footer-nav ul li a:hover { color: var(--gold); }
 
 .footer-bottom { padding: 20px 0; }
-.footer-bottom-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.footer-bottom-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 .footer-bottom p { font-size: 0.72rem; color: var(--white-soft); opacity: 0.3; }
 .footer-tech { font-size: 0.65rem !important; opacity: 0.15 !important; }
 
@@ -151,8 +202,12 @@ const year = new Date().getFullYear();
   box-shadow: 0 8px 32px rgba(37,211,102,0.3);
   transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
   letter-spacing: 0.04em;
+  text-decoration: none;
 }
-.wa-float:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 14px 40px rgba(37,211,102,0.4); }
+.wa-float:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 14px 40px rgba(37,211,102,0.4);
+}
 
 @media (max-width: 860px) {
   .footer-inner { grid-template-columns: 1fr 1fr; }
