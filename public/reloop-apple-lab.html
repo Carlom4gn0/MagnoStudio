@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ReLoop Apple Lab — Tecnología premium. Conciencia smart.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;--white:#ffffff;--gray-50:#f9fafb;--gray-100:#f3f4f6;
+  --gray-200:#e5e7eb;--gray-400:#9ca3af;--gray-600:#4b5563;--gray-800:#1f2937;
+  --blue:#0071e3;--blue-dk:#0058b0;--blue-lt:#e8f2fd;
+  --green:#1d9e75;--green-lt:#e1f5ee;
+  --amber:#ba7517;--amber-lt:#faeeda;
+  --radius-sm:8px;--radius:14px;--radius-lg:20px;--radius-xl:28px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--gray-800);background:var(--white);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+
+/* ─── UTILIDADES ─── */
+.container{max-width:1160px;margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:40px}
+.tag-blue{background:var(--blue-lt);color:var(--blue-dk)}
+.tag-green{background:var(--green-lt);color:var(--green)}
+.tag-amber{background:var(--amber-lt);color:var(--amber)}
+
+/* ─── NAVBAR ─── */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--gray-200);transition:box-shadow .3s}
+.navbar.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.08)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.logo-mark{width:36px;height:36px;background:var(--black);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-mark svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round}
+.logo-name{font-size:1rem;font-weight:700;color:var(--black);letter-spacing:-.02em}
+.logo-name span{color:var(--blue)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:.85rem;font-weight:500;color:var(--gray-600);transition:color .2s}
+.nav-links a:hover{color:var(--black)}
+.btn-nav{background:var(--black);color:#fff !important;padding:9px 20px;border-radius:40px;font-size:.82rem !important;font-weight:600 !important;transition:background .2s,transform .2s}
+.btn-nav:hover{background:#333;transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--black);border-radius:2px;transition:all .3s}
+
+/* ─── HERO ─── */
+.hero{padding:140px 0 96px;background:linear-gradient(160deg,#f5f5f7 0%,#fff 60%)}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.hero-eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
+.hero h1{font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:700;line-height:1.08;letter-spacing:-.03em;color:var(--black);margin-bottom:20px}
+.hero h1 em{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;color:var(--blue)}
+.hero-desc{font-size:1.05rem;color:var(--gray-600);font-weight:300;line-height:1.75;margin-bottom:36px;max-width:480px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--black);color:#fff;padding:14px 28px;border-radius:40px;font-size:.9rem;font-weight:600;transition:all .25s;border:none;cursor:pointer}
+.btn-primary:hover{background:#333;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--black);padding:13px 26px;border-radius:40px;font-size:.9rem;font-weight:600;border:1.5px solid var(--gray-200);transition:all .25s}
+.btn-secondary:hover{border-color:var(--black);transform:translateY(-2px)}
+.hero-trust{display:flex;gap:24px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:7px;font-size:.8rem;color:var(--gray-600);font-weight:500}
+.trust-dot{width:6px;height:6px;background:var(--green);border-radius:50%}
+
+/* Mockup iPhone */
+.hero-visual{position:relative;display:flex;justify-content:center}
+.iphone-frame{width:260px;background:var(--black);border-radius:44px;padding:12px;box-shadow:0 40px 80px rgba(0,0,0,.25),0 0 0 1px rgba(255,255,255,.08);position:relative}
+.iphone-screen{background:#1c1c1e;border-radius:34px;overflow:hidden;aspect-ratio:9/19.5;position:relative;display:flex;flex-direction:column}
+.iphone-notch{width:100px;height:28px;background:var(--black);border-radius:0 0 18px 18px;margin:0 auto;position:relative;z-index:2}
+.iphone-content{padding:16px 14px;flex:1;display:flex;flex-direction:column;gap:10px}
+.i-product-img{width:100%;height:110px;background:linear-gradient(135deg,#2c2c2e,#1c1c1e);border-radius:14px;display:flex;align-items:center;justify-content:center}
+.i-product-img svg{width:64px;height:64px;opacity:.6}
+.i-product-name{font-size:11px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.i-product-sub{font-size:9px;color:#8e8e93;font-weight:400}
+.i-price{font-size:16px;font-weight:700;color:#fff;margin-top:2px}
+.i-badge{display:inline-block;background:#1d9e75;color:#fff;font-size:8px;font-weight:600;padding:2px 7px;border-radius:20px;letter-spacing:.06em}
+.i-btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 0;font-size:10px;font-weight:600;width:100%;cursor:pointer;margin-top:4px}
+.float-badge{position:absolute;background:#fff;border-radius:12px;padding:10px 14px;box-shadow:0 8px 24px rgba(0,0,0,.15);font-size:11px;font-weight:600;color:var(--black);white-space:nowrap}
+.fb1{top:60px;right:-60px}
+.fb2{bottom:80px;left:-60px}
+.fb-sub{font-size:9px;color:var(--gray-400);font-weight:400;margin-top:1px}
+
+/* ─── FEATURES ─── */
+.features{background:var(--gray-50);padding:80px 0}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px}
+.feat-card{background:var(--white);border-radius:var(--radius-lg);padding:32px 28px;border:1px solid var(--gray-200);transition:transform .3s,box-shadow .3s}
+.feat-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.07)}
+.feat-icon{width:48px;height:48px;border-radius:12px;background:var(--gray-100);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.feat-icon svg{width:22px;height:22px;stroke:var(--black);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.feat-card h3{font-size:1rem;font-weight:700;color:var(--black);margin-bottom:8px;letter-spacing:-.01em}
+.feat-card p{font-size:.88rem;color:var(--gray-600);font-weight:300;line-height:1.65}
+
+/* ─── CATALOGO ─── */
+.catalogo{padding:96px 0}
+.section-header{text-align:center;margin-bottom:64px}
+.section-eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:12px}
+.section-header h2{font-size:clamp(2rem,4vw,3rem);font-weight:700;letter-spacing:-.03em;color:var(--black);margin-bottom:12px}
+.section-header p{font-size:1rem;color:var(--gray-600);font-weight:300;max-width:500px;margin:0 auto}
+
+/* Filtros */
+.filtros{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:48px}
+.filtro-btn{padding:9px 20px;border-radius:40px;border:1.5px solid var(--gray-200);background:transparent;font-family:'Inter',sans-serif;font-size:.82rem;font-weight:500;color:var(--gray-600);cursor:pointer;transition:all .2s}
+.filtro-btn.active,.filtro-btn:hover{background:var(--black);color:#fff;border-color:var(--black)}
+
+/* Grid de productos */
+.productos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.prod-card{background:var(--white);border-radius:var(--radius-lg);border:1px solid var(--gray-200);overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:pointer}
+.prod-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.10);border-color:var(--gray-400)}
+.prod-img{height:200px;background:linear-gradient(135deg,#f5f5f7,#e8e8ed);display:flex;align-items:center;justify-content:center;position:relative}
+.prod-img svg{width:90px;height:90px;opacity:.55}
+.prod-img .tags{position:absolute;top:12px;left:12px;display:flex;gap:6px;flex-wrap:wrap}
+.prod-body{padding:20px}
+.prod-category{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-400);margin-bottom:6px}
+.prod-name{font-size:1rem;font-weight:700;color:var(--black);letter-spacing:-.015em;margin-bottom:8px}
+.prod-specs{display:flex;flex-direction:column;gap:4px;margin-bottom:14px}
+.prod-spec{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--gray-600);font-weight:400}
+.spec-dot{width:4px;height:4px;border-radius:50%;background:var(--gray-400);flex-shrink:0}
+.prod-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--gray-100)}
+.prod-price{font-size:1.4rem;font-weight:700;color:var(--black);letter-spacing:-.02em}
+.prod-price small{font-size:.72rem;font-weight:400;color:var(--gray-400);display:block;margin-bottom:-2px}
+.btn-wa{display:inline-flex;align-items:center;gap:6px;background:#25d366;color:#fff;border:none;border-radius:40px;padding:9px 16px;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.btn-wa:hover{background:#1fba59;transform:scale(1.04)}
+.btn-wa svg{width:14px;height:14px;fill:#fff}
+
+/* Batería */
+.bateria-bar{height:4px;border-radius:2px;background:var(--gray-200);margin-top:4px;overflow:hidden}
+.bateria-fill{height:100%;border-radius:2px;background:var(--green);transition:width 1s ease}
+
+/* ─── ABOUT ─── */
+.about{background:var(--black);padding:96px 0;overflow:hidden;position:relative}
+.about::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(0,113,227,.12) 0%,transparent 70%);pointer-events:none}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center}
+.about h2{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;letter-spacing:-.03em;color:#fff;margin-bottom:24px;line-height:1.15}
+.about h2 em{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;color:var(--blue)}
+.about p{font-size:.95rem;color:#8e8e93;font-weight:300;line-height:1.8;margin-bottom:20px}
+.about-nums{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:36px}
+.about-num{background:rgba(255,255,255,.05);border-radius:var(--radius);padding:22px 20px;border:1px solid rgba(255,255,255,.07)}
+.about-num strong{display:block;font-size:2rem;font-weight:700;color:#fff;letter-spacing:-.03em;line-height:1}
+.about-num span{font-size:.78rem;color:#636366;margin-top:4px;display:block;font-weight:400}
+.checklist{list-style:none;display:flex;flex-direction:column;gap:14px}
+.checklist li{display:flex;align-items:flex-start;gap:12px;font-size:.9rem;color:#aeaeb2;font-weight:300;line-height:1.5}
+.check-mark{width:22px;height:22px;border-radius:50%;background:rgba(0,113,227,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.check-mark svg{width:11px;height:11px;stroke:var(--blue);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* ─── FAQ ─── */
+.faq{background:var(--gray-50);padding:96px 0}
+.faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:2px}
+.faq-item{background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-200);overflow:hidden;transition:border-color .2s}
+.faq-item.open{border-color:var(--gray-400)}
+.faq-btn{width:100%;background:none;border:none;padding:20px 24px;text-align:left;font-family:'Inter',sans-serif;font-size:.95rem;font-weight:600;color:var(--black);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:background .2s}
+.faq-btn:hover{background:var(--gray-50)}
+.faq-arrow{width:20px;height:20px;border-radius:50%;background:var(--gray-100);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s,background .2s}
+.faq-arrow svg{width:10px;height:10px;stroke:var(--gray-600);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s}
+.faq-item.open .faq-arrow{background:var(--black)}
+.faq-item.open .faq-arrow svg{stroke:#fff;transform:rotate(180deg)}
+.faq-body{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
+.faq-body p{padding:0 24px 20px;font-size:.9rem;color:var(--gray-600);font-weight:300;line-height:1.75}
+.faq-item.open .faq-body{max-height:300px}
+
+/* ─── CONTACTO ─── */
+.contacto{padding:96px 0}
+.contacto-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.contacto h2{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;letter-spacing:-.03em;color:var(--black);margin-bottom:16px}
+.contacto-desc{font-size:.95rem;color:var(--gray-600);font-weight:300;line-height:1.75;margin-bottom:36px}
+.contact-items{display:flex;flex-direction:column;gap:14px}
+.contact-item{display:flex;align-items:center;gap:14px;background:var(--gray-50);border-radius:var(--radius);padding:16px 18px;border:1px solid var(--gray-200);transition:border-color .2s}
+.contact-item:hover{border-color:var(--gray-400)}
+.c-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.c-icon svg{width:18px;height:18px;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.c-icon.wa{background:#e8f9f0}
+.c-icon.wa svg{stroke:#1d9e75;fill:none}
+.c-icon.mail{background:var(--blue-lt)}
+.c-icon.mail svg{stroke:var(--blue);fill:none}
+.c-icon.loc{background:var(--amber-lt)}
+.c-icon.loc svg{stroke:var(--amber);fill:none}
+.c-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);display:block;margin-bottom:2px}
+.c-value{font-size:.88rem;font-weight:600;color:var(--black)}
+/* Formulario */
+.contact-form{background:var(--gray-50);border-radius:var(--radius-lg);padding:36px 32px;border:1px solid var(--gray-200)}
+.contact-form h3{font-size:1.15rem;font-weight:700;color:var(--black);margin-bottom:24px;letter-spacing:-.02em}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.form-group label{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-600)}
+.form-group input,.form-group select,.form-group textarea{background:var(--white);border:1.5px solid var(--gray-200);border-radius:10px;padding:11px 14px;font-family:'Inter',sans-serif;font-size:.9rem;color:var(--black);outline:none;transition:border-color .2s,box-shadow .2s;width:100%}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,113,227,.10)}
+.form-group textarea{resize:vertical;min-height:90px}
+.btn-submit{width:100%;background:var(--black);color:#fff;border:none;border-radius:40px;padding:14px;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;cursor:pointer;transition:all .25s;margin-top:4px}
+.btn-submit:hover{background:#333;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+
+/* ─── FOOTER ─── */
+.footer{background:var(--black);padding:64px 0 28px}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:56px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:28px}
+.footer-brand p{font-size:.82rem;color:#636366;line-height:1.7;margin:16px 0 20px;font-weight:300;max-width:280px}
+.footer-social{display:flex;gap:10px}
+.soc-btn{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;transition:all .2s;cursor:pointer}
+.soc-btn:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.soc-btn svg{width:15px;height:15px;fill:#8e8e93;transition:fill .2s}
+.soc-btn:hover svg{fill:#fff}
+.footer-nav h5{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#636366;margin-bottom:16px}
+.footer-nav ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-nav ul li a{font-size:.82rem;color:#8e8e93;transition:color .2s;font-weight:300}
+.footer-nav ul li a:hover{color:#fff}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.footer-bottom p{font-size:.72rem;color:#3a3a3c}
+.footer-logo-dark .logo-mark{width:32px;height:32px;border-radius:8px}
+
+/* ─── WA FLOAT ─── */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:999;background:#25d366;color:#fff;border-radius:50px;padding:12px 20px 12px 16px;display:flex;align-items:center;gap:8px;font-weight:600;font-size:.82rem;box-shadow:0 8px 28px rgba(37,211,102,.35);transition:all .3s;cursor:pointer;border:none;font-family:'Inter',sans-serif}
+.wa-float:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 14px 36px rgba(37,211,102,.45)}
+.wa-float svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .hero-inner,.about-inner,.contacto-inner{grid-template-columns:1fr;gap:48px}
+  .iphone-frame{display:none}
+  .productos-grid,.features-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .footer-brand{grid-column:1/-1}
+  .hamburger{display:flex}
+  .nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:rgba(255,255,255,.98);flex-direction:column;gap:0;padding:8px 0 20px;border-bottom:1px solid var(--gray-200)}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:13px 28px;border-bottom:1px solid var(--gray-100);font-size:.9rem}
+  .btn-nav{margin:12px 28px 0;text-align:center}
+}
+@media(max-width:580px){
+  .productos-grid,.features-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .wa-float span{display:none}
+  .wa-float{padding:14px;border-radius:50%}
+  .about-nums{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 4 6 4 10c0 3 1.5 5.5 4 7l4 5 4-5c2.5-1.5 4-4 4-7 0-4-2.5-8-8-8z"/></svg>
+      </div>
+      <span class="logo-name">Re<span>Loop</span> Lab</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="nav-links">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contacto">Contacto</a>
+      <a href="https://wa.me/5493425550198" class="btn-nav" target="_blank">Cotizar por WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Tecnología premium · Conciencia smart</p>
+      <h1>Estrená el iPhone que querés, <em>como más te conviene.</em></h1>
+      <p class="hero-desc">Equipos nuevos en caja sellada y usados seleccionados con garantía certificada. Financiación a tu medida y Plan Canje.</p>
+      <div class="hero-actions">
+        <a href="#catalogo" class="btn-primary">
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Ver catálogo
+        </a>
+        <a href="https://wa.me/5493425550198?text=Hola!%20Quiero%20cotizar%20mi%20usado%20para%20plan%20canje." class="btn-secondary" target="_blank">
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Cotizar mi usado
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><span class="trust-dot"></span> 6 meses de garantía</div>
+        <div class="trust-item"><span class="trust-dot"></span> Envíos a todo el país</div>
+        <div class="trust-item"><span class="trust-dot"></span> Plan canje disponible</div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="iphone-frame">
+        <div class="iphone-screen">
+          <div class="iphone-notch"></div>
+          <div class="iphone-content">
+            <div class="i-product-img">
+              <svg viewBox="0 0 80 100" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="12" y="4" width="56" height="92" rx="12"/>
+                <line x1="28" y1="4" x2="28" y2="1"/>
+                <line x1="52" y1="4" x2="52" y2="1"/>
+                <rect x="28" y="1" width="24" height="5" rx="2.5" fill="#1c1c1e" stroke="#1c1c1e"/>
+                <circle cx="40" cy="85" r="5"/>
+                <rect x="20" y="15" width="40" height="28" rx="4"/>
+              </svg>
+            </div>
+            <div>
+              <div class="i-product-name">iPhone 15 Pro Max</div>
+              <div class="i-product-sub">256 GB · Titanio Natural</div>
+              <div class="i-price">USD 1.250</div>
+            </div>
+            <span class="i-badge">NUEVO EN CAJA</span>
+            <button class="i-btn">Consultar por WhatsApp</button>
+          </div>
+        </div>
+      </div>
+      <div class="float-badge fb1">
+        ✓ Garantía Apple 1 año
+        <div class="fb-sub">Nuevo en caja sellada</div>
+      </div>
+      <div class="float-badge fb2">
+        🔋 Batería 87%
+        <div class="fb-sub">Test de 35 puntos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">¿Por qué elegirnos?</span>
+      <h2>Nuestra propuesta de valor</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Garantía ReLoop</h3>
+        <p>6 meses de garantía escrita en equipos usados certificados. 1 año oficial Apple en equipos nuevos. Siempre con respaldo.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M7 16V4m0 0L3 8m4-4l4 4"/><path d="M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
+        </div>
+        <h3>Plan Canje</h3>
+        <p>Tomamos tu iPhone actual como parte de pago al mejor valor de mercado. Evaluamos en el acto, sin vueltas.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M5 12H2l9-9 9 9h-3v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7z"/></svg>
+        </div>
+        <h3>Envíos asegurados</h3>
+        <p>Despachamos a todo el país con correo prioritario y seguro total sobre la mercadería. Recibís tu equipo seguro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATÁLOGO -->
+<section class="catalogo" id="catalogo">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Catálogo</span>
+      <h2>Encontrá tu iPhone ideal</h2>
+      <p>Nuevos en caja sellada y usados seleccionados con nuestro test de 35 puntos.</p>
+    </div>
+
+    <div class="filtros">
+      <button class="filtro-btn active" data-filter="todos">Todos</button>
+      <button class="filtro-btn" data-filter="nuevo">iPhone Nuevos</button>
+      <button class="filtro-btn" data-filter="certified">ReLoop Certified</button>
+      <button class="filtro-btn" data-filter="accesorio">Accesorios</button>
+    </div>
+
+    <div class="productos-grid" id="productos-grid">
+
+      <!-- iPhone 15 Pro Max -->
+      <div class="prod-card" data-category="nuevo">
+        <div class="prod-img">
+          <div class="tags"><span class="tag tag-blue">Nuevo</span></div>
+          <img src="/public/images/portfolio/iphone-15-pro-max.png" alt="" width="180px" height="180px">
+        </div>
+        <div class="prod-body">
+          <div class="prod-category">iPhone Nuevos</div>
+          <div class="prod-name">iPhone 15 Pro Max 256 GB</div>
+          <div class="prod-specs">
+            <div class="prod-spec"><span class="spec-dot"></span>Titanio Natural o Negro</div>
+            <div class="prod-spec"><span class="spec-dot"></span>Garantía oficial Apple 1 año</div>
+            <div class="prod-spec"><span class="spec-dot"></span>Caja sellada, libre de uso</div>
+          </div>
+          <div class="prod-footer">
+            <div class="prod-price"><small>Precio</small>USD 1.250</div>
+            <a href="https://wa.me/5493425550198?text=Hola!%20Me%20interesa%20el%20iPhone%2015%20Pro%20Max%20256GB%20Nuevo." class="btn-wa" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Consultar
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- iPhone 13 Certified -->
+      <div class="prod-card" data-category="certified">
+        <div class="prod-img">
+          <div class="tags"><span class="tag tag-green">Certified A+</span></div>
+          <img src="/public/images/portfolio/iphone-13.jpg" alt="" width="150" height="150">
+        </div>
+        <div class="prod-body">
+          <div class="prod-category">ReLoop Certified</div>
+          <div class="prod-name">iPhone 13 128 GB</div>
+          <div class="prod-specs">
+            <div class="prod-spec"><span class="spec-dot"></span>Color: Midnight</div>
+            <div class="prod-spec"><span class="spec-dot"></span>Incluye cable y caja ReLoop</div>
+            <div class="prod-spec" style="flex-direction:column;align-items:flex-start;gap:4px">
+              <div style="display:flex;align-items:center;gap:6px"><span class="spec-dot"></span>Batería: 87%</div>
+              <div class="bateria-bar" style="width:100%"><div class="bateria-fill" style="width:87%;background:var(--green)"></div></div>
+            </div>
+          </div>
+          <div class="prod-footer">
+            <div class="prod-price"><small>Precio</small>USD 520</div>
+            <a href="https://wa.me/5493425550198?text=Hola!%20Me%20interesa%20el%20iPhone%2013%20128GB%20Certified." class="btn-wa" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Consultar
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- iPhone 11 Certified -->
+      <div class="prod-card" data-category="certified">
+        <div class="prod-img">
+          <div class="tags"><span class="tag tag-amber">Certified A</span></div>
+          <img src="/public/images/portfolio/apple-iphone-11.webp" alt="" width="150" height="150">
+        </div>
+        <div class="prod-body">
+          <div class="prod-category">ReLoop Certified</div>
+          <div class="prod-name">iPhone 11 128 GB</div>
+          <div class="prod-specs">
+            <div class="prod-spec"><span class="spec-dot"></span>Color: Blanco · Pantalla original</div>
+            <div class="prod-spec"><span class="spec-dot"></span>FaceID activo y funcional</div>
+            <div class="prod-spec" style="flex-direction:column;align-items:flex-start;gap:4px">
+              <div style="display:flex;align-items:center;gap:6px"><span class="spec-dot"></span>Batería: 84%</div>
+              <div class="bateria-bar" style="width:100%"><div class="bateria-fill" style="width:84%;background:#ba7517"></div></div>
+            </div>
+          </div>
+          <div class="prod-footer">
+            <div class="prod-price"><small>Precio</small>USD 340</div>
+            <a href="https://wa.me/5493425550198?text=Hola!%20Me%20interesa%20el%20iPhone%2011%20128GB%20Certified." class="btn-wa" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Consultar
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="nosotros">
+  <div class="container about-inner">
+    <div>
+      <h2>Redefinimos cómo accedés a la <em>tecnología Apple.</em></h2>
+      <p>En ReLoop, nacimos con el objetivo de hacer que el ecosistema iPhone sea accesible y seguro. Cada equipo usado que ingresa pasa por un riguroso testeo técnico de 35 puntos clave (batería, cámaras, sensores, pantalla y conectividad) antes de salir a la venta con nuestra garantía escrita.</p>
+      <p>Combinamos la obsesión por el detalle de lo nuevo con la oportunidad inteligente del mercado usado.</p>
+      <div class="about-nums">
+        <div class="about-num"><strong>35</strong><span>puntos de testeo técnico</span></div>
+        <div class="about-num"><strong>6</strong><span>meses de garantía escrita</span></div>
+        <div class="about-num"><strong>100%</strong><span>transparencia en cada equipo</span></div>
+        <div class="about-num"><strong>24hs</strong><span>despacho a todo el país</span></div>
+      </div>
+    </div>
+    <div>
+      <ul class="checklist">
+        <li>
+          <div class="check-mark"><svg viewBox="0 0 12 9"><polyline points="1,4 4,7 11,1"/></svg></div>
+          <span>Cada equipo usado se vende con certificado de garantía impreso, cable de carga nuevo y caja de la marca ReLoop.</span>
+        </li>
+        <li>
+          <div class="check-mark"><svg viewBox="0 0 12 9"><polyline points="1,4 4,7 11,1"/></svg></div>
+          <span>El Grado A+ significa equipo prácticamente sin marcas. El Grado A tiene marcas mínimas de uso que no afectan el funcionamiento.</span>
+        </li>
+        <li>
+          <div class="check-mark"><svg viewBox="0 0 12 9"><polyline points="1,4 4,7 11,1"/></svg></div>
+          <span>Plan Canje: nos enviás las specs de tu equipo por WhatsApp, recibís cotización y descontamos el valor de tu nuevo iPhone.</span>
+        </li>
+        <li>
+          <div class="check-mark"><svg viewBox="0 0 12 9"><polyline points="1,4 4,7 11,1"/></svg></div>
+          <span>Todos los equipos nuevos son originales, comprados a distribuidores autorizados, con IMEI limpio y sin bloqueo de iCloud.</span>
+        </li>
+        <li>
+          <div class="check-mark"><svg viewBox="0 0 12 9"><polyline points="1,4 4,7 11,1"/></svg></div>
+          <span>Despachamos con OCA o Correo Argentino con seguro incluido. El equipo llega protegido o te devolvemos el dinero.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Preguntas frecuentes</span>
+      <h2>Todo lo que necesitás saber</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-btn">
+          ¿Qué incluye un iPhone usado ReLoop?
+          <span class="faq-arrow"><svg viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg></span>
+        </button>
+        <div class="faq-body"><p>Todos nuestros equipos usados se entregan con cable de carga nuevo, caja de la marca ReLoop y el certificado de garantía escrita por 6 meses. El equipo viene reseteado, activado y listo para usar.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn">
+          ¿Cómo funciona el Plan Canje?
+          <span class="faq-arrow"><svg viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg></span>
+        </button>
+        <div class="faq-body"><p>Nos enviás las especificaciones de tu equipo (modelo, almacenamiento y condición de batería) por WhatsApp. Te damos una cotización estimada y, tras la verificación física en nuestro laboratorio, descontamos el valor de tu nuevo iPhone.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn">
+          ¿Qué diferencia hay entre Grado A+ y Grado A?
+          <span class="faq-arrow"><svg viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg></span>
+        </button>
+        <div class="faq-body"><p>El Grado A+ indica un equipo en estado casi nuevo, sin marcas visibles a simple vista. El Grado A puede presentar marcas mínimas de uso (microrayaduras leves) que no afectan el funcionamiento ni la pantalla. Ambos pasan el test completo de 35 puntos.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn">
+          ¿Hacen envíos a todo el país?
+          <span class="faq-arrow"><svg viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg></span>
+        </button>
+        <div class="faq-body"><p>Sí, despachamos a todo el país con OCA o Correo Argentino en modalidad prioritaria. El envío incluye seguro total sobre la mercadería. Si el equipo llega con algún problema causado por el transporte, lo reemplazamos sin costo.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn">
+          ¿Los equipos nuevos tienen IMEI libre?
+          <span class="faq-arrow"><svg viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg></span>
+        </button>
+        <div class="faq-body"><p>Sí. Todos los equipos nuevos son comprados a distribuidores autorizados. Tienen IMEI limpio, sin bloqueo de iCloud y con garantía oficial Apple de 1 año. Podés verificar el IMEI antes de la compra.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div class="container contacto-inner">
+    <div>
+      <h2>¿Tenés alguna consulta?</h2>
+      <p class="contacto-desc">Escribinos por WhatsApp o completa el formulario. Respondemos en menos de 2 horas hábiles.</p>
+      <div class="contact-items">
+        <a href="https://wa.me/5493425550198" target="_blank" class="contact-item">
+          <div class="c-icon wa">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div><span class="c-label">WhatsApp Ventas</span><span class="c-value">+54 9 342 555-0198</span></div>
+        </a>
+        <a href="mailto:hola@relooplab.com" class="contact-item">
+          <div class="c-icon mail">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div><span class="c-label">Email soporte</span><span class="c-value">hola@relooplab.com</span></div>
+        </a>
+        <div class="contact-item">
+          <div class="c-icon loc">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div><span class="c-label">Showroom</span><span class="c-value">Bv. Gálvez 1420 P.2 Of.B, Santa Fe</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon" style="background:#f5f5f7">
+            <svg viewBox="0 0 24 24" style="stroke:#636366;fill:none;stroke-width:2;stroke-linecap:round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          </div>
+          <div><span class="c-label">Horarios</span><span class="c-value">Lun–Vie 9–13 y 16–20 · Sáb 9–13</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3>Envianos tu consulta</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Nombre</label><input type="text" placeholder="Tu nombre"/></div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="tu@email.com"/></div>
+      </div>
+      <div class="form-group">
+        <label>¿Qué necesitás?</label>
+        <select>
+          <option>Seleccioná una opción</option>
+          <option>Comprar iPhone nuevo</option>
+          <option>Comprar iPhone certificado</option>
+          <option>Cotizar Plan Canje</option>
+          <option>Consulta de garantía</option>
+          <option>Otra consulta</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Mensaje</label><textarea placeholder="Contanos tu consulta o describí el equipo que buscás..."></textarea></div>
+      <button class="btn-submit" onclick="alert('¡Consulta enviada! Te respondemos a la brevedad. (Demo)')">Enviar consulta</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo footer-logo-dark">
+          <div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 2C6.5 2 4 6 4 10c0 3 1.5 5.5 4 7l4 5 4-5c2.5-1.5 4-4 4-7 0-4-2.5-8-8-8z"/></svg></div>
+          <span class="logo-name" style="color:#fff">Re<span>Loop</span> Lab</span>
+        </div>
+        <p>Tecnología premium. Conciencia smart. Equipos nuevos y certificados con garantía escrita.</p>
+        <div class="footer-social">
+          <button class="soc-btn" onclick="alert('Instagram (Demo)')"><svg viewBox="0 0 24 24"><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="#8e8e93" stroke-width="2"/></svg></button>
+          <button class="soc-btn" onclick="alert('Facebook (Demo)')"><svg viewBox="0 0 24 24" fill="#8e8e93"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></button>
+          <button class="soc-btn" onclick="alert('WhatsApp (Demo)')"><svg viewBox="0 0 24 24" fill="#8e8e93"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <h5>Productos</h5>
+        <ul>
+          <li><a href="#catalogo">iPhone Nuevos</a></li>
+          <li><a href="#catalogo">ReLoop Certified</a></li>
+          <li><a href="#catalogo">Accesorios</a></li>
+          <li><a href="#contacto">Plan Canje</a></li>
+        </ul>
+      </div>
+      <div class="footer-nav">
+        <h5>Empresa</h5>
+        <ul>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#contacto">Showroom</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 ReLoop Argentina S.A.S. · Bv. Gálvez 1420, Santa Fe</p>
+      <p>Sitio desarrollado por <a href="#" style="color:#636366;text-decoration:underline">Magno Studio Web</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- WA FLOTANTE -->
+<a href="/" class="wa-float" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span>Consultá ahora</span>
+</a>
+
+<script>
+// Navbar scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', scrollY > 20);
+});
+
+// Hamburger
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('nav-links').classList.toggle('open');
+});
+document.querySelectorAll('#nav-links a').forEach(a =>
+  a.addEventListener('click', () => document.getElementById('nav-links').classList.remove('open'))
+);
+
+// Filtros catálogo
+document.querySelectorAll('.filtro-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.prod-card').forEach(card => {
+      card.style.display = (filter === 'todos' || card.dataset.category === filter) ? 'block' : 'none';
+    });
+  });
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+
+</body>
+</html>
