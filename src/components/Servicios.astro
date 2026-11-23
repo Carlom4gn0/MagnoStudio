@@ -1,5 +1,6 @@
 ---
-const WA = 'https://wa.me/543424470962?text=Hola%2C%20quiero%20consultar%20con%20Magno%20Studio%20sobre%20';
+// Número de WhatsApp (sin +, sin espacios). Todos los briefs se envían acá.
+const WA_NUMBER = '543424470962';
 
 const servicios = [
   {
@@ -8,9 +9,8 @@ const servicios = [
     titulo: 'Landing Pages de Alta Conversión',
     desc: 'Una sola página construida para convertir. Cada sección, cada copy y cada botón están diseñados con un objetivo: que el visitante compre, se suscriba o te contacte.',
     bullets: ['Diseño 100% a medida', 'Copy persuasivo incluido', 'Integración WhatsApp / Email', 'Optimizada para anuncios'],
-    desde: 'USD 800',
     cta: 'Quiero mi landing',
-    msg: 'una%20landing%20page.',
+    valor: 'Landing page de alta conversión',
   },
   {
     num: '02',
@@ -18,9 +18,8 @@ const servicios = [
     titulo: 'Embudos de Venta Completos',
     desc: 'Sistema completo de páginas: captura, ventas, upsell y agradecimiento. Diseñado para guiar al usuario paso a paso hasta el checkout sin fricciones.',
     bullets: ['Funnel de hasta 5 páginas', 'Integración con pasarela de pago', 'Email marketing conectado', 'A/B testing incluido'],
-    desde: 'USD 1000',
     cta: 'Quiero mi embudo',
-    msg: 'un%20embudo%20de%20ventas.',
+    valor: 'Embudo de ventas completo',
   },
   {
     num: '03',
@@ -28,9 +27,8 @@ const servicios = [
     titulo: 'Sitios Institucionales Premium',
     desc: 'Para empresas, ONGs y organizaciones que necesitan presencia digital seria. Multi-sección, con blog, formularios y panel de administración propio.',
     bullets: ['Múltiples secciones y páginas', 'Blog con CMS Keystatic', 'Panel admin propio', 'SEO técnico avanzado'],
-    desde: 'USD 1500',
     cta: 'Quiero mi sitio',
-    msg: 'un%20sitio%20institucional.',
+    valor: 'Sitio institucional premium',
   },
   {
     num: '04',
@@ -38,11 +36,28 @@ const servicios = [
     titulo: 'Mantenimiento y Soporte Mensual',
     desc: 'Tu sitio siempre actualizado, seguro y funcionando. Actualizaciones de contenido, nuevas secciones, correcciones y soporte técnico prioritario.',
     bullets: ['Actualizaciones ilimitadas de contenido', 'Nuevas secciones mensuales', 'Monitoreo de performance', 'Soporte prioritario 24hs'],
-    desde: 'A consultar',
     cta: 'Consultar plan',
-    msg: 'el%20plan%20de%20mantenimiento.',
+    valor: 'Mantenimiento y soporte mensual',
   },
 ];
+
+// Opciones del brief. Editá estos arrays para cambiar el formulario.
+const proyectos = [...servicios.map((s) => s.valor), 'Todavía no lo tengo claro'];
+const objetivos = [
+  'Recibir más consultas o reservas',
+  'Vender online',
+  'Tener una presencia institucional profesional',
+  'Lanzar un producto o servicio nuevo',
+  'Mejorar mi sitio actual',
+];
+const inversiones = [
+  'Hasta USD 1.000',
+  'USD 1.000 a 2.000',
+  'USD 2.000 a 3.500',
+  'Más de USD 3.500',
+  'Prefiero que me orienten',
+];
+const plazos = ['Lo antes posible', 'En 1 o 2 meses', 'Más adelante, estoy explorando'];
 ---
 
 <section id="servicios" class="servicios">
@@ -58,7 +73,7 @@ const servicios = [
 
     <div class="srv-list">
       {servicios.map((s, i) => (
-        <div class={`srv-item reveal`} style={`animation-delay:${i*0.1}s`}>
+        <div class="srv-item reveal" style={`animation-delay:${i * 0.1}s`}>
           <div class="srv-left">
             <span class="srv-num">{s.num}</span>
             <div class="srv-icon-wrap">{s.icon}</div>
@@ -67,20 +82,11 @@ const servicios = [
             <h3>{s.titulo}</h3>
             <p>{s.desc}</p>
             <ul class="srv-bullets">
-              {s.bullets.map(b => <li><span>✓</span>{b}</li>)}
+              {s.bullets.map((b) => <li><span>✓</span>{b}</li>)}
             </ul>
           </div>
           <div class="srv-right">
-            <div class="srv-price">
-              <span class="price-desde">desde</span>
-              <span class="price-val">{s.desde}</span>
-            </div>
-            <a
-              href={`${WA}${s.msg}`}
-              target="_blank"
-              rel="noopener"
-              class="btn btn-ghost srv-cta"
-            >
+            <a href="#propuesta" class="btn btn-ghost srv-cta" data-servicio={s.valor}>
               {s.cta} →
             </a>
           </div>
@@ -88,10 +94,85 @@ const servicios = [
       ))}
     </div>
 
+    <!-- Brief de proyecto: arma un mensaje de WhatsApp, no se guarda ningún dato -->
+    <div id="propuesta" class="propuesta reveal">
+      <div class="prop-intro">
+        <span class="eyebrow">Propuesta a medida</span>
+        <h3>Contanos qué querés construir.</h3>
+        <p>
+          Cada proyecto es distinto, por eso no publicamos tarifas. Completá el brief y
+          te respondemos por WhatsApp con una propuesta que incluye alcance, inversión y próximos pasos.
+        </p>
+        <ol class="prop-steps">
+          <li><span>1</span>Completás el brief en menos de 2 minutos.</li>
+          <li><span>2</span>Se abre WhatsApp con tus datos ya escritos.</li>
+          <li><span>3</span>Analizamos tu caso y te enviamos la propuesta.</li>
+        </ol>
+        <p class="prop-privacy">
+          Tus datos no se guardan en este sitio: solo se arman en un mensaje que enviás vos.
+        </p>
+      </div>
+
+      <form id="brief-form" class="brief" data-wa={WA_NUMBER} novalidate>
+        <div class="brief-grid">
+          <div class="field">
+            <label for="b-nombre">Nombre <span aria-hidden="true">*</span></label>
+            <input id="b-nombre" name="nombre" type="text" maxlength="60" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="b-negocio">Negocio o marca</label>
+            <input id="b-negocio" name="negocio" type="text" maxlength="80" autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label for="b-proyecto">¿Qué necesitás? <span aria-hidden="true">*</span></label>
+            <select id="b-proyecto" name="proyecto" required>
+              <option value="">Seleccioná una opción</option>
+              {proyectos.map((o) => <option value={o}>{o}</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label for="b-objetivo">Objetivo principal <span aria-hidden="true">*</span></label>
+            <select id="b-objetivo" name="objetivo" required>
+              <option value="">Seleccioná una opción</option>
+              {objetivos.map((o) => <option value={o}>{o}</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label for="b-inversion">Inversión estimada <span aria-hidden="true">*</span></label>
+            <select id="b-inversion" name="inversion" required>
+              <option value="">Seleccioná una opción</option>
+              {inversiones.map((o) => <option value={o}>{o}</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label for="b-plazo">Plazo</label>
+            <select id="b-plazo" name="plazo">
+              <option value="">Seleccioná una opción</option>
+              {plazos.map((o) => <option value={o}>{o}</option>)}
+            </select>
+          </div>
+          <div class="field field-full">
+            <label for="b-sitio">Sitio web o Instagram actual</label>
+            <input id="b-sitio" name="sitio" type="text" maxlength="120" autocomplete="off" placeholder="Opcional" />
+          </div>
+          <div class="field field-full">
+            <label for="b-detalle">Detalles del proyecto</label>
+            <textarea id="b-detalle" name="detalle" rows="4" maxlength="500" placeholder="Opcional: qué vendés, a quién, qué te gustaría lograr."></textarea>
+          </div>
+        </div>
+
+        <p class="brief-error" role="alert" aria-live="polite" hidden></p>
+
+        <button type="submit" class="btn btn-gold brief-submit">Enviar brief por WhatsApp →</button>
+        <p class="brief-note">Los campos con * son obligatorios.</p>
+      </form>
+    </div>
+
   </div>
 </section>
 
 <style>
+
 .servicios { background: var(--void-soft); }
 
 .srv-header { margin-bottom: 72px; }
@@ -163,19 +244,11 @@ const servicios = [
 .srv-right {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: stretch;
   justify-content: center;
   padding: 36px 36px;
   border-left: 1px solid var(--border);
   gap: 16px;
-}
-.srv-price { text-align: right; }
-.price-desde { display: block; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white-soft); margin-bottom: 2px; }
-.price-val {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 300;
-  color: var(--gold);
 }
 .srv-cta { font-size: 0.76rem !important; padding: 10px 20px !important; white-space: nowrap; }
 
@@ -185,4 +258,220 @@ const servicios = [
   .srv-center { padding: 24px; }
   .srv-right { align-items: flex-start; border-left: none; border-top: 1px solid var(--border); padding: 20px 24px; flex-direction: row; align-items: center; }
 }
+
+.srv-cta { justify-content: center; }
+
+/* Brief de proyecto */
+.propuesta {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 56px;
+  margin-top: 72px;
+  padding: 48px;
+  border: 1px solid var(--border-gold, var(--border));
+  border-radius: var(--radius);
+  background: rgba(201,169,110,0.03);
+  scroll-margin-top: 110px;
+}
+.prop-intro h3 {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.2;
+  margin: 10px 0 14px;
+}
+.prop-intro > p {
+  font-size: 0.88rem;
+  color: var(--white-soft);
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+.prop-steps { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.prop-steps li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.82rem;
+  color: var(--white-soft);
+  font-weight: 300;
+}
+.prop-steps li span {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border-gold, var(--gold));
+  color: var(--gold);
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.prop-intro .prop-privacy {
+  font-size: 0.74rem;
+  color: var(--white-dim);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.brief-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.field-full { grid-column: 1 / -1; }
+.field label {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white-soft);
+}
+.field label span { color: var(--gold); }
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  color: var(--white);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.field input::placeholder,
+.field textarea::placeholder { color: var(--white-dim); }
+.field textarea { resize: vertical; min-height: 96px; }
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 38px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a96e' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+.field select option { background: var(--void-card); color: var(--white); }
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,169,110,0.12);
+}
+.field [aria-invalid="true"] { border-color: #e5484d; }
+
+.brief-error {
+  margin-top: 16px;
+  padding: 10px 14px;
+  border: 1px solid rgba(229,72,77,0.4);
+  border-radius: var(--radius-sm);
+  background: rgba(229,72,77,0.08);
+  color: #f2999c;
+  font-size: 0.8rem;
+}
+.brief-submit { width: 100%; justify-content: center; margin-top: 20px; padding: 14px 20px; }
+.brief-note { margin-top: 10px; font-size: 0.7rem; color: var(--white-dim); text-align: center; }
+
+@media (max-width: 960px) {
+  .propuesta { grid-template-columns: 1fr; gap: 36px; padding: 32px 24px; }
+}
+@media (max-width: 560px) {
+  .brief-grid { grid-template-columns: 1fr; }
+}
 </style>
+
+<script>
+  // Arma un mensaje de WhatsApp con los datos del brief. No envía nada a ningún servidor.
+  const form = document.getElementById('brief-form');
+
+  if (form) {
+    const waNumber = (form.dataset.wa || '').replace(/\D/g, '');
+    const errorBox = form.querySelector('.brief-error');
+
+    // Quita caracteres de control y de dirección de texto (evita mensajes manipulados)
+    const BAD = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F\u200B-\u200F\u202A-\u202E\u2066-\u2069]/g;
+    const cleanLine = (v, max) =>
+      String(v == null ? '' : v).replace(BAD, ' ').replace(/[\r\n\t]+/g, ' ').replace(/ {2,}/g, ' ').trim().slice(0, max);
+    const cleanText = (v, max) =>
+      String(v == null ? '' : v).replace(/\r\n?/g, '\n').replace(BAD, ' ').replace(/[ \t]{2,}/g, ' ')
+        .replace(/\n{3,}/g, '\n\n').trim().slice(0, max);
+
+    const showError = (msg) => {
+      if (!errorBox) return;
+      errorBox.textContent = msg;
+      errorBox.hidden = false;
+    };
+    const clearError = () => {
+      if (errorBox) errorBox.hidden = true;
+      form.querySelectorAll('[aria-invalid]').forEach((el) => el.removeAttribute('aria-invalid'));
+    };
+
+    // Los botones de cada servicio preseleccionan el tipo de proyecto
+    document.querySelectorAll('[data-servicio]').forEach((link) => {
+      link.addEventListener('click', () => {
+        const select = form.elements.namedItem('proyecto');
+        if (select && link.dataset.servicio) select.value = link.dataset.servicio;
+        const nombre = form.elements.namedItem('nombre');
+        if (nombre) setTimeout(() => nombre.focus({ preventScroll: true }), 500);
+      });
+    });
+
+    form.addEventListener('input', clearError);
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      clearError();
+
+      const get = (name) => form.elements.namedItem(name);
+      const data = {
+        nombre: cleanLine(get('nombre').value, 60),
+        negocio: cleanLine(get('negocio').value, 80),
+        proyecto: cleanLine(get('proyecto').value, 80),
+        objetivo: cleanLine(get('objetivo').value, 80),
+        inversion: cleanLine(get('inversion').value, 40),
+        plazo: cleanLine(get('plazo').value, 40),
+        sitio: cleanLine(get('sitio').value, 120),
+        detalle: cleanText(get('detalle').value, 500),
+      };
+
+      const required = ['nombre', 'proyecto', 'objetivo', 'inversion'];
+      const missing = required.filter((k) => !data[k]);
+      if (missing.length) {
+        missing.forEach((k) => get(k).setAttribute('aria-invalid', 'true'));
+        get(missing[0]).focus();
+        showError('Completá los campos obligatorios para enviar el brief.');
+        return;
+      }
+      if (!waNumber) {
+        showError('No pudimos abrir WhatsApp. Escribinos desde el botón flotante.');
+        return;
+      }
+
+      const lines = ['Hola, quiero solicitar una propuesta a Magno Studio.', ''];
+      lines.push('Nombre: ' + data.nombre);
+      if (data.negocio) lines.push('Negocio: ' + data.negocio);
+      lines.push('Proyecto: ' + data.proyecto);
+      lines.push('Objetivo: ' + data.objetivo);
+      lines.push('Inversión estimada: ' + data.inversion);
+      if (data.plazo) lines.push('Plazo: ' + data.plazo);
+      if (data.sitio) lines.push('Sitio actual: ' + data.sitio);
+      if (data.detalle) lines.push('', 'Detalles: ' + data.detalle);
+
+      const url = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(lines.join('\n'));
+
+      // window.open con noopener devuelve null; un <a> temporal abre la pestaña de forma segura
+      const a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    });
+  }
+</script>
+
